@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :api, Api.Repo,
-  username: "math-game-app",
-  password: "apimathgameapp",
+  username: "math_game_api",
+  password: "mathgameapi",
   database: "math-game-db",
   hostname: "ncos8docker1.sleddens.lan",
   port: 7002,
