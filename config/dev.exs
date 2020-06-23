@@ -2,10 +2,11 @@ use Mix.Config
 
 # Configure your database
 config :api, Api.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "api_dev",
-  hostname: "localhost",
+  username: "math-game-app",
+  password: "apimathgameapp",
+  database: "math-game-db",
+  hostname: "ncos8docker1.sleddens.lan",
+  port: 7002,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

@@ -1,4 +1,4 @@
-# Api
+# MathGame-api
 
 To start your Phoenix server:
 
