@@ -7,6 +7,7 @@ defmodule Api.Repo.Migrations.CreateQuestions do
 
       timestamps()
     end
+
     create(unique_index(:questions, [:text]))
   end
 end
