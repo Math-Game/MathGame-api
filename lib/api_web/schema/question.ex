@@ -4,6 +4,7 @@ defmodule ApiWeb.Schema.Question do
   object :question do
     field(:id, :id)
     field(:text, :string)
+    field(:answer, :string)
     #    field(:answers, :)
   end
 end

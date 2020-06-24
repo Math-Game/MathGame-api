@@ -2,27 +2,43 @@ defmodule ApiWeb.Resolvers.QuestionResolver do
   alias Api.Generator.{QuestionGenerator, NumberGenerator}
   alias Api.Questions
 
-  def questions(id, text) do
+  defp get_question() do
     question = QuestionGenerator.generate_question()
 
-    question =
-      case {
+    db_result =
+      question
+      |> Map.get(:text)
+      |> Questions.get_question_by_text()
+
+    cond do
+      db_result == nil ->
+        %{
+          answer: Map.get(question, :answer),
+          text: Map.get(question, :text)
+        }
+        |> Questions.create_question()
+
         question
         |> Map.get(:text)
-        |> Questions.get_question_by_text(),
-        question
-      } do
-        {nill, original} ->
-          %{
-            answer: Map.get(original, :answer),
-            text: Map.get(original, :text)
-          }
-          |> Questions.create_question()
+        |> Questions.get_question_by_text()
 
-        {res} ->
-          res
-      end
+      db_result != nil ->
+        db_result
+    end
+  end
 
-    {:ok, [question]}
+  defp get_questions(array \\ [], count \\ 0) do
+    case count < 100 do
+      true ->
+        [get_question() | array]
+        |> get_questions(count + 1)
+
+      false ->
+        array
+    end
+  end
+
+  def questions(id, text) do
+    {:ok, get_questions()}
   end
 end
