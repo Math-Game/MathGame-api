@@ -2,7 +2,7 @@ defmodule ApiWeb.Resolvers.QuestionResolver do
   alias Api.Generator.{QuestionGenerator, NumberGenerator}
   alias Api.Questions
 
-  defp get_question() do
+  defp get_random_question() do
     question = QuestionGenerator.generate_question()
 
     db_result =
@@ -27,18 +27,61 @@ defmodule ApiWeb.Resolvers.QuestionResolver do
     end
   end
 
-  defp get_questions(array \\ [], count \\ 0) do
-    case count < 100 do
+  def get_false_answers(answers, amount, correct) do
+    case length(answers) < amount do
       true ->
-        [get_question() | array]
-        |> get_questions(count + 1)
+        number = NumberGenerator.generate_number(-100, 100)
 
-      false ->
+        case number != correct && !Enum.member?(answers, number) do
+          true ->
+            [number | answers]
+            |> get_false_answers(amount, correct)
+
+          _ ->
+            get_false_answers(answers, amount, correct)
+        end
+
+      _ ->
+        answers
+    end
+  end
+
+  defp get_random_questions(array, count) do
+    case count > 0 do
+      true ->
+        question = get_random_question()
+
+        question =
+          Map.put(question, :false_answers, get_false_answers([], 3, Map.get(question, :answer)))
+
+        [question | array]
+        |> get_random_questions(count - 1)
+
+      _ ->
         array
     end
   end
 
-  def questions(id, text) do
-    {:ok, get_questions()}
+  def questions(_parent, args, _resolution) do
+    cond do
+      Map.get(args, :random) == true && Map.has_key?(args, :amount) ->
+        {:ok, get_random_questions([], Map.get(args, :amount))}
+
+      Map.has_key?(args, :id) ->
+        try do
+          {
+            :ok,
+            args
+            |> Map.get(:id)
+            |> Questions.get_question!()
+          }
+        rescue
+          _e in Ecto.NoResultsError ->
+            {:error, "The question belonging to this id can not be found"}
+        end
+
+      true ->
+        {:error, "Can not resolve combination of parameters"}
+    end
   end
 end

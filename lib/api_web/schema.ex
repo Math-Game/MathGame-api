@@ -9,7 +9,10 @@ defmodule ApiWeb.Schema do
   query do
     @desc "Get a set of questions"
     field :questions, list_of(:question) do
-      resolve(&Resolvers.QuestionResolver.questions/2)
+      arg(:random, non_null(:boolean))
+      arg(:amount, :integer)
+      arg(:id, :integer)
+      resolve(&Resolvers.QuestionResolver.questions/3)
     end
   end
 
