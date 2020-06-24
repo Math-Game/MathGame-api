@@ -1,4 +1,5 @@
 defmodule Api.Generator.QuestionGenerator do
+  alias Api.Questions.Question
   alias Api.Generator.NumberGenerator
 
   @arithmetic_operators ['+', '-', '*']
@@ -15,6 +16,6 @@ defmodule Api.Generator.QuestionGenerator do
         '*' -> num1 * num2
       end
 
-    %{text: "#{num1} #{operator} #{num2}", answer: answer}
+    %Question{text: "#{num1} #{operator} #{num2}", answer: answer}
   end
 end
