@@ -27,45 +27,45 @@ defmodule ApiWeb.Resolvers.QuestionResolver do
     end
   end
 
-  def get_false_answers(answers, amount, correct) do
-    case length(answers) < amount do
+  def get_false_answers(amount, correct) do
+    case amount > 0 do
       true ->
+        answers = get_false_answers(amount - 1, correct)
         number = NumberGenerator.generate_number(-100, 100)
 
         case number != correct && !Enum.member?(answers, number) do
           true ->
             [number | answers]
-            |> get_false_answers(amount, correct)
 
           _ ->
-            get_false_answers(answers, amount, correct)
+            get_false_answers(amount, correct)
         end
 
       _ ->
-        answers
+        []
     end
   end
 
-  defp get_random_questions(array, count) do
+  defp get_random_questions(count) do
     case count > 0 do
       true ->
+        questions = get_random_questions(count - 1)
         question = get_random_question()
 
         question =
-          Map.put(question, :false_answers, get_false_answers([], 3, Map.get(question, :answer)))
+          Map.put(question, :false_answers, get_false_answers(3, Map.get(question, :answer)))
 
-        [question | array]
-        |> get_random_questions(count - 1)
+        [question | questions]
 
       _ ->
-        array
+        []
     end
   end
 
   def questions(_parent, args, _resolution) do
     cond do
       Map.get(args, :random) == true && Map.has_key?(args, :amount) ->
-        {:ok, get_random_questions([], Map.get(args, :amount))}
+        {:ok, get_random_questions(Map.get(args, :amount))}
 
       Map.has_key?(args, :id) ->
         try do
