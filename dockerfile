@@ -2,7 +2,7 @@ FROM elixir:latest
 
 RUN mkdir -p /mathgame/api
 COPY . /mathgame/api
-WORKDIR /mathgame/app
+WORKDIR /mathgame/api
 
 RUN mix local.hex --force
 
