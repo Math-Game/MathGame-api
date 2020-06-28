@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
-
 jobs:
   load:
     docker:
@@ -44,7 +41,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-      - sonarcloud/scan
+#      - to be done
 
   deploy:
     machine: true
@@ -62,10 +59,10 @@ jobs:
           command: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_NAME --password-stdin
       - run:
           name: build docker
-          command: docker build -t docker.io/$DOCKER_NAME/math-game-app:<< parameters.docker-push >> .
+          command: docker build -t docker.io/$DOCKER_NAME/math-game-api:<< parameters.docker-push >> .
       - run:
           name: docker push
-          command: docker push docker.io/$DOCKER_NAME/math-game-app:<< parameters.docker-push >>
+          command: docker push docker.io/$DOCKER_NAME/math-game-api:<< parameters.docker-push >>
 
 workflows:
   version: 2
