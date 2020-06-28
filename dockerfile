@@ -1,6 +1,6 @@
 FROM elixir:latest
 
-RUN mkdir /mathgame/api
+RUN mkdir -p /mathgame/api
 COPY . /mathgame/api
 WORKDIR /mathgame/app
 
