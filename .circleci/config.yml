@@ -20,6 +20,7 @@ jobs:
             - deps
             - priv
             - mix.ecs
+            - dockerfile
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
   test:
