@@ -12,7 +12,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "mix.exs" }}
             - v1-dependencies-
-      - run: mix deps.get
+      - run: mix local.hex --force
       - save_cache:
           paths:
             - config
