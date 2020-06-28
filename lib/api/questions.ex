@@ -38,6 +38,22 @@ defmodule Api.Questions do
   def get_question!(id), do: Repo.get!(Question, id)
 
   @doc """
+  Gets a single question.
+
+  Raises `Ecto.NoResultsError` if the Question does not exist.
+
+  ## Examples
+
+      iex> get_question_by_text(123)
+      %Question{}
+
+      iex> get_question_by_text!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_question_by_text(text), do: Repo.get_by(Question, text: text)
+
+  @doc """
   Creates a question.
 
   ## Examples

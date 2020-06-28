@@ -4,6 +4,7 @@ defmodule ApiWeb.Schema.Question do
   object :question do
     field(:id, :id)
     field(:text, :string)
-    #    field(:answers, :)
+    field(:answer, :string)
+    field(:false_answers, list_of(:integer))
   end
 end
