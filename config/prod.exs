@@ -30,8 +30,8 @@ config :api,
        https: [
          port: 443,
          cipher_suite: :strong,
-         keyfile: System.get_env("/certs/mathgame.key"),
-         certfile: System.get_env("/certs/mathgame.crt"),
+         keyfile: "/certs/mathgame.key",
+         certfile: "/certs/mathgame.crt",
          transport_options: [
            socket_opts: [:inet6]
          ]
