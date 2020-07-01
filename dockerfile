@@ -12,4 +12,4 @@ RUN mix deps.compile
 
 RUN mix do compile
 
-RUN MIX_ENV=prod mix phx.server
+CMD MIX_ENV=prod mix phx.server
