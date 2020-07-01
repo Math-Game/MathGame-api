@@ -58,6 +58,4 @@ config :api, ApiWeb.Endpoint, force_ssl: [hsts: true]
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
 
-config :logger, handle_sasl_reports: true
-
 import_config "prod.secret.exs"
