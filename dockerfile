@@ -23,6 +23,6 @@ COPY --from=build-stage /mathgame/api/_build .
 RUN chown -R api: ./prod
 User api
 
-COPY entrypoint.sh .
+COPY --from=build-stage entrypoint.sh .
 
 CMD ["./entrypoint.sh"]
