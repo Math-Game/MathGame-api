@@ -13,7 +13,6 @@ RUN mix deps.get
 RUN mix deps.compile
 
 RUN mix release
-RUN ls -ls
 
 FROM alpine as production-stage
 
@@ -21,7 +20,8 @@ RUN mkdir -p /home/mathgame/api
 RUN adduser -D -h /home/mathgame/api api
 
 WORKDIR /home/mathgame/api
-COPY --from=build-stage [/mathgame/api/_build, /mathgame/api/entrypoint.sh] .
+COPY --from=build-stage /mathgame/api/entrypoint.sh .
+COPY --from=build-stage /mathgame/api/_build .
 RUN chown -R api: ./prod
 User api
 
