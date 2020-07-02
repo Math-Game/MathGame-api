@@ -10,21 +10,28 @@ defmodule ApiWeb.Endpoint do
     signing_salt: "Ih1rWtAc"
   ]
 
-  socket "/socket", ApiWeb.UserSocket,
-    websocket: true,
-    longpoll: false
+  socket "/socket",
+         ApiWeb.UserSocket,
+         websocket: true,
+         longpoll: false
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket "/live",
+         Phoenix.LiveView.Socket,
+         websocket: [
+           connect_info: [
+             session: @session_options
+           ]
+         ]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/",
-    from: :api,
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+  #  plug Plug.Static,
+  #    at: "/",
+  #    from: :api,
+  #    gzip: false,
+  #    only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
