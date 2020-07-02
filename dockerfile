@@ -13,6 +13,7 @@ RUN mix deps.get
 RUN mix deps.compile
 
 RUN mix release
+RUN ls -ls
 
 FROM alpine as production-stage
 
