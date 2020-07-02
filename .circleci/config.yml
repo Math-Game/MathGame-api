@@ -21,6 +21,7 @@ jobs:
             - priv
             - mix.exs
             - dockerfile
+            - entrypoint.sh
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
   test:
