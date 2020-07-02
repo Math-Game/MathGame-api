@@ -16,6 +16,7 @@ RUN mix release
 
 FROM alpine as production-stage
 
+RUN mkdir -p /home/mathgame/api
 RUN adduser -D -h /home/mathgame/api api
 
 WORKDIR /home/mathgame/api
