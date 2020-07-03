@@ -22,5 +22,6 @@ WORKDIR /home/mathgame/api
 COPY --from=build-stage /mathgame/api/_build .
 
 COPY --from=build-stage /mathgame/api/entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 
 CMD ["./entrypoint.sh"]
