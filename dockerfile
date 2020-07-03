@@ -21,9 +21,9 @@ RUN adduser -D -h /home/mathgame/api api
 
 WORKDIR /home/mathgame/api
 COPY --from=build-stage /mathgame/api/entrypoint.sh .
-COPY --from=build-stage /mathgame/api/_build .
 RUN chown -R api: ./prod
-User api
+USER api
 
+COPY --from=build-stage /mathgame/api/_build .
 
 CMD ["./entrypoint.sh"]
