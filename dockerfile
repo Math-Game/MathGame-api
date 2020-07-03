@@ -23,6 +23,4 @@ COPY --from=build-stage /mathgame/api/_build .
 
 COPY --from=build-stage /mathgame/api/entrypoint.sh .
 
-USER api
-
 CMD ["./entrypoint.sh"]
