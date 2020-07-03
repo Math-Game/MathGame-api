@@ -31,4 +31,4 @@ RUN ls -a -l
 
 USER api
 
-CMD ["entrypoint.sh"]
+CMD ["./entrypoint.sh"]
