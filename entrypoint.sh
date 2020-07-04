@@ -3,9 +3,9 @@
 
 # Wait until Postgres is ready
 res=$(pg_isready -q -h $DB_HOST -p 5432 -U $DB_USER)
-while ! res
+while ! $res
 do
-  echo res
+  echo $res
   echo "$(date) - waiting for database to start"
   sleep 2
 done
