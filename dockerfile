@@ -1,4 +1,4 @@
-FROM elixir:latest
+FROM elixir:latest as build-stage
 
 ENV MIX_ENV=prod
 
