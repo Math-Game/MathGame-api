@@ -86,6 +86,7 @@ workflows:
               only:
                 - develop
                 - master
+                - feature/circle-ci
 
   automatic-deploy:
     triggers:
