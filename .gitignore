@@ -28,3 +28,4 @@ api-*.tar
 /priv/static/
 
 /.idea
+/.vscode
