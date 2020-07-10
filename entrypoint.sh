@@ -2,7 +2,7 @@
 # Docker entrypoint script.
 pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; echo $?
 # Wait until Postgres is ready
-res="$(pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; $)"
+res="$(pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; $? -ne 0)"
 echo "res is: ${res}"
 
 while $res != 0
