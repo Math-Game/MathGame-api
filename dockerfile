@@ -16,7 +16,7 @@ RUN mix release
 
 FROM alpine as production-stage
 
-RUN apk add --update postgresql-client
+# RUN apk add --update postgresql-client
 
 RUN mkdir -p /home/mathgame/api
 WORKDIR /home/mathgame/api
