@@ -5,7 +5,7 @@ pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; echo $?
 res="$(pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; $)"
 echo "res is: ${res}"
 
-while $res
+while $res != 0
 do
   res="$(pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; echo $?)"
   echo "res is: ${res}"
