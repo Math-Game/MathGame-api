@@ -3,29 +3,26 @@ use Mix.Config
 secret_key_base =
   System.get_env(
     "SECRET_KEY_BASE" ||
-      raise(
-        """
-        SECRET_KEY_BASE is not found in the environment variables.
-        You can generate one by calling: mix phx.gen.secret
-        """
-      )
+      raise("""
+      SECRET_KEY_BASE is not found in the environment variables.
+      You can generate one by calling: mix phx.gen.secret
+      """)
   )
 
-app_port = System.get_env(
-  "APP_PORT" ||
-    raise """
-    APP_PORT is not found in the environment variables.
-    """
-)
+app_port =
+  System.get_env(
+    "APP_PORT" ||
+      raise("""
+      APP_PORT is not found in the environment variables.
+      """)
+  )
 
 app_host_name =
   System.get_env(
     "APP_HOSTNAME" ||
-      raise(
-        """
-        APP_HOSTNAME is missing from the environment variables.
-        """
-      )
+      raise("""
+      APP_HOSTNAME is missing from the environment variables.
+      """)
   )
 
 config :api,
@@ -48,31 +45,25 @@ config :api,
 db_user =
   System.get_env(
     "DB_USER" ||
-      raise(
-        """
-        DB_USER is missing from the environment variables.
-        """
-      )
+      raise("""
+      DB_USER is missing from the environment variables.
+      """)
   )
 
 db_pass =
   System.get_env(
     "DB_PASS" ||
-      raise(
-        """
-        DB_PASS is missing from the environment variables.
-        """
-      )
+      raise("""
+      DB_PASS is missing from the environment variables.
+      """)
   )
 
 db_host =
   System.get_env(
     "DB_HOST" ||
-      raise(
-        """
-        DB_HOST is missing from the environment variables.
-        """
-      )
+      raise("""
+      DB_HOST is missing from the environment variables.
+      """)
   )
 
 db_port = System.get_env("DB_PORT" || 5432)
