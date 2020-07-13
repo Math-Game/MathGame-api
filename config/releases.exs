@@ -72,6 +72,7 @@ db_pool_size = System.get_env("DB_POOL_SIZE" || 10)
 
 config :api,
        Api.Repo,
+       show_sensitive_data_on_connection_error: true,
        username: db_user,
        password: db_pass,
        database: db_name,
