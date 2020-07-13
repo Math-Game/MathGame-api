@@ -12,7 +12,7 @@ WORKDIR /mathgame/api
 RUN mix deps.get
 RUN mix deps.compile
 
-RUN mix release
+RUN mix do compile, release
 
 FROM elixir:latest as production-stage
 
