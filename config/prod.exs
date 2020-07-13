@@ -21,21 +21,21 @@ config :logger, level: :info
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-config :api,
-       ApiWeb.Endpoint,
-       url: [
-         host: "ncos8docker1.sleddens.lan",
-         port: 7001
-       ],
-       https: [
-         port: 443,
-         cipher_suite: :strong,
-         keyfile: "/certs/mathgame.key",
-         certfile: "/certs/mathgame.crt",
-         transport_options: [
-           socket_opts: [:inet6]
-         ]
-       ]
+# config :api,
+#        ApiWeb.Endpoint,
+#        url: [
+#          host: "ncos8docker1.sleddens.lan",
+#          port: 7001
+#        ],
+#        https: [
+#          port: 443,
+#          cipher_suite: :strong,
+#          keyfile: "/certs/mathgame.key",
+#          certfile: "/certs/mathgame.crt",
+#          transport_options: [
+#            socket_opts: [:inet6]
+#          ]
+#        ]
 
 #
 # The `cipher_suite` is set to `:strong` to support only the
