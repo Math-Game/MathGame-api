@@ -13,7 +13,7 @@
 # done
 
 sleep 10
-echo "hello"
+echo hello
 
 
 ./prod/rel/api/bin/api eval Api.Release.migrate
