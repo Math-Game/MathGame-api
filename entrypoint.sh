@@ -1,6 +1,6 @@
-!/bin/sh
-Docker entrypoint script.
-Wait until Postgres is ready
+# !/bin/sh
+# Docker entrypoint script.
+# Wait until Postgres is ready
 
 
 while ! pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q; do 
