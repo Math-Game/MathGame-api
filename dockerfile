@@ -31,4 +31,4 @@ RUN chown api: entrypoint.sh
 
 USER api
 
-CMD [ "./entrypoint.sh" ]
+ENTRYPOINT [ "./entrypoint.sh" ]
