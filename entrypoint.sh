@@ -4,13 +4,16 @@
 
 # ping -c 3 db.math.game
 
-while ! pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q
-do 
- pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q
- echo $?
- echo "$(date) - waiting for database to start"
- sleep 2
-done
+# while ! pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q
+# do 
+#  pg_isready -p 5432 -h $DB_HOST -U $DB_USER -q
+#  echo $?
+#  echo "$(date) - waiting for database to start"
+#  sleep 2
+# done
+
+sleep 10
+echo "hello"
 
 
 ./prod/rel/api/bin/api eval Api.Release.migrate
