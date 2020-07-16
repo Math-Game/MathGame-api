@@ -12,7 +12,7 @@ WORKDIR /mathgame/api
 RUN mix deps.get
 RUN mix deps.compile
 
-RUN mix do compile, release
+RUN mix release
 
 FROM alpine:latest as production-stage
 
